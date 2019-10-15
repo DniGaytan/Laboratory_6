@@ -1,0 +1,34 @@
+body{
+  font-family: arial;
+}
+
+
+#results {
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width:100%;
+}
+
+.class-video > p, .class-video > div , .class-video{
+  justify-content: center;
+}
+
+.class-video {
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding-left: 30px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+}
+
+#previous-next {
+  text-align: center;
+}
+
+button {
+  margin-top: 20px;
+}
