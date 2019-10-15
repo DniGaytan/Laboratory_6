@@ -2,6 +2,7 @@ var nextPage = ''
 var prevPage = ''
 var key = 'AIzaSyAvLXiPM4IBLvrlnx2kjS-iqR3oB-CHKYk'
 var key2 = 'AIzaSyDE14XaVA6R17PJVmzh61YQq__QZ-yg1zY'
+var resultado = ''
 //tengo dos keys porque se me acabaron las queries en key2, no se cuantas queries me queden disponibles en key.
 
 var api_url = 'https://www.googleapis.com/youtube/v3/search'
@@ -9,8 +10,11 @@ var api_url = 'https://www.googleapis.com/youtube/v3/search'
 $("form").on( "submit", function(event){
   event.preventDefault();
   $("#results").empty();
+  nextPage = ''
+  prevPage = ''
 
-  var resultado = $("#input-text").val();
+  resultado = $("#input-text").val();
+
 
   $.ajax({
     cache: false,
@@ -19,6 +23,7 @@ $("form").on( "submit", function(event){
     contentType: "application/json",
     dataType: "json",
     success: function(result){
+      console.log(result);
       nextPage = result.nextPageToken;
       for(var i = 0; i < result.items.length; i++){
         var divElement = document.createElement('div');
@@ -41,11 +46,12 @@ $("#previous-button").click(function(){
   $("#results").empty();
   $.ajax({
     cache: false,
-    url: api_url + "?key=" + key +"&pageToken=" + prevPage + '&part=snippet' + "&maxResults=10",
+    url: api_url + "?key=" + key +"&q=" + resultado + "&pageToken=" + prevPage + '&part=snippet' + "&maxResults=10",
     type: "GET",
     contentType: "application/json",
     dataType: "json",
     success: function(result){
+      console.log(result);
       nextPage = result.nextPageToken;
       prevPage = result.prevPageToken;
       for(var i = 0; i < result.items.length; i++){
@@ -69,11 +75,12 @@ $("#next-button").click(function(){
   $("#results").empty();
   $.ajax({
     cache: false,
-    url: api_url + "?key=" + key +"&pageToken=" + nextPage + '&part=snippet' + "&maxResults=10",
+    url: api_url + "?key=" + key +"&q=" + resultado + "&pageToken=" + nextPage + '&part=snippet' + "&maxResults=10",
     type: "GET",
     contentType: "application/json",
     dataType: "json",
     success: function(result){
+      console.log(result);
       nextPage = result.nextPageToken;
       prevPage = result.prevPageToken;
       for(var i = 0; i < result.items.length; i++){
